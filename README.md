@@ -3,7 +3,7 @@
 
 # SIAtools <img src="man/figures/logo.svg" align="right" width="142"/>
 
-> A Toolkit for ShinyItemAnalysis Modules Development
+> ‘ShinyItemAnalysis’ Modules Development Toolkit
 
 <!-- badges: start -->
 <!-- [![R-CMD-check](https://github.com/ApplStat/SIAtools/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ApplStat/SIAtools/actions/workflows/R-CMD-check.yaml) -->

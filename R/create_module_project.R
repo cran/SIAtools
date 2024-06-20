@@ -24,7 +24,7 @@
 #' @family project_templates
 #'
 #' @examples
-#' \donttest{
+#' if (interactive()) {
 #' # create a new SIA module project in the parent of your working directory
 #' create_module_project("../my_new_module")
 #' }

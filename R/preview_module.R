@@ -36,10 +36,10 @@
 #' @param ui_elements elements to include in `fluidPage`, preferably packed in
 #'   `tagList()`.
 #' @param save_and_document *logical*, whether to [save
-#'   all][rstudioapi::documentSaveAll] unsaved files and
-#'   [document][roxygen2::roxygenise] the package. Defaults to `TRUE`. Note that
-#'   documenting the package is necessary if you use any functions from external
-#'   packages (to produce the `NAMESPACE`).
+#'   all][rstudioapi::documentSaveAll] unsaved files (only available in RStudio)
+#'   and [document][roxygen2::roxygenise] the package. Defaults to `TRUE`. Note
+#'   that documenting the package is necessary if you use any functions from
+#'   external packages (to produce the `NAMESPACE`).
 #' @param load *logical*, whether to [load][pkgload::load_all] your package
 #'   before running the module preview. Defaults to `TRUE`. Note that you have
 #'   to load the package by yourself or install it in the usual way if you set
@@ -52,9 +52,8 @@
 #'
 #' @examples
 #' if (interactive()) {
-#'  preview_module()
+#'   preview_module()
 #' }
-#'
 #'
 #' @importFrom shiny shinyApp fluidPage
 #' @importFrom usethis proj_get
@@ -154,7 +153,6 @@ preview_module <- function(module_id = NULL,
 #' @keywords internal
 #'
 #' @importFrom rlang try_fetch
-#' @importFrom cli cli_abort
 #' @importFrom rlang check_installed
 #'
 save_and_document_fun <- function(proj = curr_proj()) {
@@ -162,11 +160,10 @@ save_and_document_fun <- function(proj = curr_proj()) {
     reason = "to automatically save all files and document the package."
   )
 
-  if (!is_rstudio_available() || !is_rs_api_fun_available("documentSaveAll")) {
-    cli_abort("RStudio is not running or the function is not available.")
+  if (is_rstudio_available() && is_rs_api_fun_available("documentSaveAll")) {
+    rs_api_documentSaveAll()
   }
 
-  rs_api_documentSaveAll()
 
   try_fetch(
     roxygen2::roxygenise(package.dir = proj),

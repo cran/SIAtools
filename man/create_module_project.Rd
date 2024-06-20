@@ -25,7 +25,7 @@ Directory > ShinyItemAnalysis Module Project. See \href{https://docs.posit.co/id
 for the details.
 }
 \examples{
-\donttest{
+if (interactive()) {
 # create a new SIA module project in the parent of your working directory
 create_module_project("../my_new_module")
 }

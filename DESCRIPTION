@@ -1,6 +1,6 @@
 Package: SIAtools
 Title: 'ShinyItemAnalysis' Modules Development Toolkit
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: c(
     person("Jan", "Netik", , "netik@cs.cas.cz", role = c("cre", "aut"),
            comment = c(ORCID = "0000-0002-3888-3203")),
@@ -25,9 +25,9 @@ Encoding: UTF-8
 Language: en-US
 RoxygenNote: 7.3.1
 NeedsCompilation: no
-Packaged: 2024-04-23 15:49:36 UTC; netik
+Packaged: 2024-06-20 15:37:26 UTC; netik
 Author: Jan Netik [cre, aut] (<https://orcid.org/0000-0002-3888-3203>),
   Patricia Martinkova [aut] (<https://orcid.org/0000-0003-4754-8543>)
 Maintainer: Jan Netik <netik@cs.cas.cz>
 Repository: CRAN
-Date/Publication: 2024-04-24 14:40:02 UTC
+Date/Publication: 2024-06-20 21:30:02 UTC

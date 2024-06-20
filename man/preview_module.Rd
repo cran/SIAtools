@@ -29,10 +29,10 @@ app. \emph{Not used at the moment}.}
 \item{ui_elements}{elements to include in \code{fluidPage}, preferably packed in
 \code{tagList()}.}
 
-\item{save_and_document}{\emph{logical}, whether to \link[rstudioapi:rstudio-documents]{save all} unsaved files and
-\link[roxygen2:roxygenize]{document} the package. Defaults to \code{TRUE}. Note that
-documenting the package is necessary if you use any functions from external
-packages (to produce the \code{NAMESPACE}).}
+\item{save_and_document}{\emph{logical}, whether to \link[rstudioapi:rstudio-documents]{save all} unsaved files (only available in RStudio)
+and \link[roxygen2:roxygenize]{document} the package. Defaults to \code{TRUE}. Note
+that documenting the package is necessary if you use any functions from
+external packages (to produce the \code{NAMESPACE}).}
 
 \item{load}{\emph{logical}, whether to \link[pkgload:load_all]{load} your package
 before running the module preview. Defaults to \code{TRUE}. Note that you have
@@ -95,9 +95,8 @@ vignette.
 }
 \examples{
 if (interactive()) {
- preview_module()
+  preview_module()
 }
-
 
 }
 \seealso{

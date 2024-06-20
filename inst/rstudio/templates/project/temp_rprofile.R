@@ -6,22 +6,24 @@
 
 # do not evaluate in .GlobalEnv, so user's environment remains clean
 local({
-  # get the command that invoked this R session
-  # if it claims RStudio, consider that as a likely scenario
-  c_args <- commandArgs()
-  likely_rstudio <- basename(c_args[1L]) == "RStudio"
+  if (interactive()) {
+    # get the command that invoked this R session
+    # if it claims RStudio, consider that as a likely scenario
+    c_args <- commandArgs()
+    likely_rstudio <- basename(c_args[1L]) == "RStudio"
 
-  if (isTRUE(likely_rstudio)) {
-    # wait for RStudio to be fully set up and call the `welcome_routine` the
-    # idea is to (1) get a "real" console width for the message to be nicely
-    # displayed and (2) to defer the message print so it gets more attention
+    if (isTRUE(likely_rstudio)) {
+      # wait for RStudio to be fully set up and call the `welcome_routine` the
+      # idea is to (1) get a "real" console width for the message to be nicely
+      # displayed and (2) to defer the message print so it gets more attention
 
-    setHook(
-      "rstudio.sessionInit",
-      function(newSession) SIAtools:::welcome_routine()
-    )
-  } else {
-    # if no RStudio is available, call it as well
-    SIAtools:::welcome_routine()
+      setHook(
+        "rstudio.sessionInit",
+        function(newSession) SIAtools:::welcome_routine()
+      )
+    } else {
+      # if no RStudio is available, call it as well
+      SIAtools:::welcome_routine()
+    }
   }
 })

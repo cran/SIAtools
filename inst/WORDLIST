@@ -1,4 +1,5 @@
 Addins
+Bugfixes
 CZmaturaS
 KaTeX
 Lifecycle
@@ -12,7 +13,6 @@ UI
 YAML
 addin
 addins
-io
 iteratively
 linter
 linters
@@ -20,11 +20,9 @@ lintr
 minimalize
 namespaced
 ons
-plotOutput
 pre
 programmatically
 reactives
 runnable
 sm
-tagList
 testthat

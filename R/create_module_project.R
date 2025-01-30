@@ -86,8 +86,8 @@ welcome_routine <- function() {
   cli_text("{.strong Here are some things to consider:}")
   cli_ol(
     c(
-      "Add your first SIA module with {.run SIAtools::add_module()}, add your code and preview using {.run SIAtools::preview_module()}.",
-      "Read the {.vignette SIAtools::getting_started} and {.vignette SIAtools::developing_modules} vignettes to familiarize yourself with the basic workflow.",
+      "Add your first SIA module with {.run SIAtools::add_module()}, add your code and preview the module using {.run SIAtools::preview_module()}.",
+      "Read the {.vignette SIAtools::getting_started} vignette to familiarize yourself with the basic workflow.",
       paste(
         "Review and edit your {.file DESCRIPTION} file. See {.href [the {.val DESCRIPTION} chapter](https://r-pkgs.org/description.html)}",
         "from {.val R Packages} book for the details. We highly recommend to read the whole book and stick with the practices described therein."

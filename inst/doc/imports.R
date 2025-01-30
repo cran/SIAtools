@@ -6,11 +6,11 @@ knitr::opts_chunk$set(
 )
 
 ## -----------------------------------------------------------------------------
-#  parent_session <- .subset2(session, "parent")
-#  
-#  updateSelectInput(
-#    session = parent_session,
-#    inputId = "data_toydata",
-#    selected = "CZmaturaS_ShinyItemAnalysis"
-#  )
+# parent_session <- .subset2(session, "parent")
+# 
+# updateSelectInput(
+#   session = parent_session,
+#   inputId = "data_toydata",
+#   selected = "CZmaturaS_ShinyItemAnalysis"
+# )
 

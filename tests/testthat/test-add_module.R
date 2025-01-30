@@ -1,8 +1,9 @@
 test_that("adding module to non-package project without DESCRIPTION fails", {
   pkg <- local_create_project(type = "project")
 
-  expect_error(add_module(name = "test"),
-    regexp = "There is no DESCRIPTION file. SIAtools needs to operate on a package."
+  expect_error(
+    add_module(name = "test"),
+    regexp = "There is no 'DESCRIPTION' file in"
   )
 })
 

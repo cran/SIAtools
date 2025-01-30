@@ -6,11 +6,11 @@ knitr::opts_chunk$set(
 )
 
 ## -----------------------------------------------------------------------------
-#  SIAtools::create_module_project("path/to/your/new/project")
+# SIAtools::create_module_project("path/to/your/new/project")
 
 ## -----------------------------------------------------------------------------
-#  SIAtools::add_module(name = "my_module")
+# SIAtools::add_module(name = "my_module")
 
 ## -----------------------------------------------------------------------------
-#  SIAtools::preview_module()
+# SIAtools::preview_module()
 

@@ -30,14 +30,21 @@ curr_proj <- function() {
 get_package_name <- function(proj = curr_proj()) {
   if (!file_exists("DESCRIPTION")) {
     cli_abort(
-      "There is no DESCRIPTION file. SIAtools needs to operate on a package."
+      c("There is no {.file DESCRIPTION} file in {.file {curr_proj()}}. This signifies that there is no package.
+      {.pkg SIAtools} needs to operate on a package.",
+        ">" = "Create a new package prepared for SIA modules with {.fn SIAtools::create_module_project}
+      or...",
+        ">" = "set your working directory to your existing package's root in case you want to equip it
+      with a SIA module."
+      )
     )
   }
-  # this aborts if not a package (in 2023, only packages has DESCRIPTION)
+  # this aborts if not a package (starting in 2023, only packages has DESCRIPTION)
   pkg_name <- try_fetch(desc_get_field("Package", default = NULL),
     error = function(cnd) {
       cli_abort(
-        "There was an error in reading the package name. The {.file DESCRIPTION} is likely blank or does not contain the {.field Package} field.",
+        "There was an error in reading the package name. The {.file DESCRIPTION} is likely blank,
+        corrupted or does not contain the {.field Package} field.",
         parent = cnd
       )
     }
@@ -237,4 +244,27 @@ yaml_path <- get_yaml_path(proj = proj)
 with_quiet_usethis(edit_file(yaml_path))
 
 invisible(yaml_path)
+}
+
+
+#' List SIA module packages available on the official repository
+#'
+#' @param repo *character*, a URL to the repository. Defaults to the official
+#'  SIA repository.
+#'
+#' @keywords internal
+#'
+#' @importFrom utils available.packages
+#'
+sm_list_available <- function(repo = default_repo()) {
+  sm_field <- names(description_field)
+  pkgs <- available.packages(repos = repo, fields = sm_field)
+  pkgs <- pkgs[, sm_field]
+  pkgs <- pkgs[!is.na(pkgs)]
+  pkgs <- pkgs[pkgs == "true"]
+  names(pkgs)
+}
+
+default_repo <- function() {
+  getOption("sia.modules_repo", "https://applstat.github.io/SIArepo/")
 }

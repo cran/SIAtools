@@ -60,7 +60,7 @@
 #' @importFrom utils menu
 #' @importFrom cli cli_abort
 #' @importFrom purrr map_chr
-#' @importFrom shiny stopApp
+#' @importFrom shiny stopApp h1 p tagList strong
 #' @importFrom rlang try_fetch check_installed
 #'
 #' @export
@@ -72,7 +72,8 @@ preview_module <- function(module_id = NULL,
                            ui_elements = sia_head_tag(),
                            save_and_document = TRUE,
                            load = TRUE,
-                           proj = curr_proj(), ...) {
+                           proj = curr_proj(),
+                           ...) {
   curr_mod <- pick_module(module_id = module_id, reason = "preview", proj = proj)
 
   if (save_and_document) {
@@ -87,7 +88,7 @@ preview_module <- function(module_id = NULL,
   # usual, so we can use asNamespace
   if (load) {
     check_installed("pkgload",
-      reason = "to load the package in order to use its functions."
+      reason = "to load the package to use its functions without proper installation."
     )
     try_fetch(
       pkgload::load_all(
@@ -107,7 +108,7 @@ preview_module <- function(module_id = NULL,
     error = function(cnd) {
       cli_abort(
         c("Cannot get the package's namespace.",
-          " " = "You likely called `{.help [preview_module](SIAtools::preview_module)}` with {.arg load = FALSE}.",
+          " " = "Maybe you called `{.help [preview_module](SIAtools::preview_module)}` with {.arg load = FALSE}.",
           ">" = "Turn the loading on, load the package by your own. If you face any other difficulty, set {.arg load = FALSE} and install the package normally."
         ),
         parent = cnd
@@ -115,15 +116,27 @@ preview_module <- function(module_id = NULL,
     }
   )
 
+  # test for displayable content and add a hint that the module is empty, if so
+  mod_ui <- do.call(
+    cur_mod_ns[[curr_mod$binding$ui]],
+    list(id = curr_mod$id, ui_imports)
+  )
+
+  if (!nzchar(as.character(mod_ui))) {
+    mod_ui <- tagList(
+      tagList(
+        h1("This module seems empty"),
+        p("Please edit the UI part of the module, i.e., the", strong(curr_mod$binding$ui), "function.")
+      ),
+      mod_ui
+    )
+  }
 
   # this is just a simple shiny app skeleton to test the module in
 
   ui <- fluidPage(
     ui_elements,
-    do.call(
-      cur_mod_ns[[curr_mod$binding$ui]],
-      list(id = curr_mod$id, ui_imports)
-    )
+    mod_ui
   )
 
   server <- function(input, output, session) {

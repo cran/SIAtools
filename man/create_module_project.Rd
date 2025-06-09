@@ -26,8 +26,8 @@ for the details.
 }
 \examples{
 if (interactive()) {
-# create a new SIA module project in the parent of your working directory
-create_module_project("../my_new_module")
+  # create a new SIA module project in the parent of your working directory
+  create_module_project("../my_new_module")
 }
 }
 \concept{project_templates}

@@ -34,3 +34,17 @@ test_that("project has .Rprofile copied", {
 
   expect_true(fs::file_exists(".Rprofile"))
 })
+
+
+# no RStudio --------------------------------------------------------------
+
+test_that("project is activated outside of RStudio", {
+  local_create_project(type = "module")
+
+  local_mocked_bindings(
+    is_rstudio_available = function(...) FALSE,
+    is_rs_api_fun_available = function(...) FALSE
+  )
+
+  expect_s3_class(curr_proj(), c("fs_path", "character"))
+})

@@ -23,6 +23,7 @@ local({
       )
     } else {
       # if no RStudio is available, call it as well
+      # but .Rprofile is not run in such case...
       SIAtools:::welcome_routine()
     }
   }

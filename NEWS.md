@@ -1,3 +1,11 @@
+# SIAtools 0.1.3
+
+## Bugfixes
+
+- `create_module_project()` now correctly sets working directory to the newly
+created module project directory even outside of RStudio if `open = TRUE`
+
+
 # SIAtools 0.1.2
 
 ## Minor changes

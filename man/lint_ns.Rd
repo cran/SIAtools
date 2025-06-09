@@ -13,8 +13,8 @@ current project’s directory.}
 \item{...}{
   Arguments passed on to \code{\link[lintr:lint]{lintr::lint_package}}
   \describe{
-    \item{\code{parse_settings}}{Logical, default \code{TRUE}. Whether to try and parse the settings;
-otherwise, the \code{\link[lintr:default_settings]{default_settings()}} are used.}
+    \item{\code{parse_settings}}{Logical, default \code{TRUE}. Whether to try and parse the \link[lintr:read_settings]{settings}. Otherwise,
+the \code{\link[lintr:default_settings]{default_settings()}} are used.}
     \item{\code{relative_path}}{if \code{TRUE}, file paths are printed using their path relative to the base directory.
 If \code{FALSE}, use the full absolute path.}
     \item{\code{exclusions}}{exclusions for \code{\link[lintr:exclude]{exclude()}}, relative to the package path.}

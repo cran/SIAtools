@@ -14,6 +14,7 @@
 #' after creation. Defaults to `TRUE`.
 #'
 #' @importFrom fs file_copy
+#' @importFrom cli cli_alert_info
 #' @importFrom usethis create_package local_project proj_activate ui_nope
 #'   use_tidy_description use_testthat use_package_doc use_package
 #'   use_readme_rmd
@@ -25,8 +26,8 @@
 #'
 #' @examples
 #' if (interactive()) {
-#' # create a new SIA module project in the parent of your working directory
-#' create_module_project("../my_new_module")
+#'   # create a new SIA module project in the parent of your working directory
+#'   create_module_project("../my_new_module")
 #' }
 create_module_project <- function(path, ..., open = TRUE) {
   path <- create_package(
@@ -62,7 +63,20 @@ create_module_project <- function(path, ..., open = TRUE) {
   called_by_rstudio_wizard <- outermost_frame_env_name == "tools:rstudio"
 
   if (isFALSE(called_by_rstudio_wizard) && open) {
-    proj_activate(path)
+    if (is_rstudio_available() && is_rs_api_fun_available("openProject")) {
+      proj_activate(path)
+    } else {
+      # if open = TRUE and we are not in RStudio, we have to override the
+      # deferred setwd() issued by local_project(), proj_activate()
+      # is not able to do that in case of local_project() at play
+      on.exit(
+        {
+          cli_alert_info("Setting working directory to {.path {path}}...")
+          setwd(path)
+        },
+        add = TRUE
+      )
+    }
   }
 }
 

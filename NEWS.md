@@ -1,3 +1,9 @@
+# SIAtools 0.1.4
+
+## Minor changes
+
+- `{SIAtools}` does no longer reexport `%>%` operator from magrittr package. The native pipe operator `|>` in used instead, internally.
+
 # SIAtools 0.1.3
 
 ## Bugfixes
